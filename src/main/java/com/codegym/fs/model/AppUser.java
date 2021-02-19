@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Entity
 @Data
@@ -21,21 +22,25 @@ public class AppUser {
     @NotNull
     private String username;
 
-    @Size(min = 6,max = 32)
     @NotNull
     private String password;
 
+    private String name = "Anonymous";
+
     private String email;
 
-    @NotNull
     private String phoneNumber;
 
-    @NotNull
     private String address;
 
     @ManyToOne
     private Ward ward;
 
-    @ManyToOne
-    private Role role;
+    @ManyToMany(fetch = FetchType.LAZY)
+    private Set<Role> roles;
+
+    public AppUser(@Size(min = 6, max = 32) @NotNull String username, @Size(min = 6, max = 32) @NotNull String password) {
+        this.username = username;
+        this.password = password;
+    }
 }
