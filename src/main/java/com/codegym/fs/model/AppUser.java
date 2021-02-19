@@ -36,7 +36,7 @@ public class AppUser {
     @ManyToOne
     private Ward ward;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
     public AppUser(@Size(min = 6, max = 32) @NotNull String username, @Size(min = 6, max = 32) @NotNull String password) {
