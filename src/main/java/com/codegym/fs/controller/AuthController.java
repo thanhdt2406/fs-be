@@ -39,7 +39,7 @@ public class AuthController {
     @Autowired
     private JwtUtils jwtUtils;
 
-    @PostMapping("/signin")
+    @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -110,5 +110,11 @@ public class AuthController {
         userService.save(user);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+    }
+
+    @GetMapping("/logout")
+    public ResponseEntity<?> logoutUser() {
+        SecurityContextHolder.getContext().setAuthentication(null);
+        return ResponseEntity.ok(new MessageResponse("User logout successfully!"));
     }
 }

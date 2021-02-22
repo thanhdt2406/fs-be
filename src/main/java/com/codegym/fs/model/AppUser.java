@@ -25,12 +25,15 @@ public class AppUser {
     @NotNull
     private String password;
 
+    @NotNull
     private String name = "Anonymous";
 
     private String email;
 
+    @NotNull
     private String phoneNumber;
 
+    @NotNull
     private String address;
 
     @ManyToOne
