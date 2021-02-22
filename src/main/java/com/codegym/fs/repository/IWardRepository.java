@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IWardRepository extends CrudRepository<Ward,Long> {
+    Iterable<Ward> findAllByDistrict_Id(Long id);
 }

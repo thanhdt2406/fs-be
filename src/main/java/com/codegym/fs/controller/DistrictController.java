@@ -25,4 +25,9 @@ public class DistrictController {
     public ResponseEntity<Optional<District>> getDistrictById(@PathVariable("id") Long id){
         return new ResponseEntity<>(districtService.findById(id),HttpStatus.OK);
     }
+
+    @GetMapping("/provinces/{id}")
+    public ResponseEntity<Iterable<District>> getDistrictByProvinceId(@PathVariable("id") Long id){
+        return new ResponseEntity<>(districtService.findAllByProvinceId(id),HttpStatus.OK);
+    }
 }

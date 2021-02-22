@@ -31,4 +31,9 @@ public class WardServiceImpl implements IWardService{
     public void delete(Long id) {
         wardRepository.deleteById(id);
     }
+
+    @Override
+    public Iterable<Ward> findAllByDistrictId(Long id) {
+        return wardRepository.findAllByDistrict_Id(id);
+    }
 }

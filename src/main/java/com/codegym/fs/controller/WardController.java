@@ -25,4 +25,9 @@ public class WardController {
     public ResponseEntity<Optional<Ward>> getWardById(@PathVariable("id") Long id){
         return new ResponseEntity<>(wardService.findById(id),HttpStatus.OK);
     }
+
+    @GetMapping("/districts/{id}")
+    public ResponseEntity<Iterable<Ward>> getWardByDistrictId(@PathVariable("id") Long id){
+        return new ResponseEntity<>(wardService.findAllByDistrictId(id),HttpStatus.OK);
+    }
 }

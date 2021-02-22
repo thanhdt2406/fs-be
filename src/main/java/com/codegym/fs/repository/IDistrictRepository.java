@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IDistrictRepository extends CrudRepository<District,Long> {
+    Iterable<District> findAllByProvince_Id(Long id);
 }

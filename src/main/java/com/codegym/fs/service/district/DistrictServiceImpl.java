@@ -31,4 +31,9 @@ public class DistrictServiceImpl implements IDistrictService{
     public void delete(Long id) {
         districtRepository.deleteById(id);
     }
+
+    @Override
+    public Iterable<District> findAllByProvinceId(Long id) {
+        return districtRepository.findAllByProvince_Id(id);
+    }
 }
