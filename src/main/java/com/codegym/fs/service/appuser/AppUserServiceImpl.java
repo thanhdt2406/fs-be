@@ -32,8 +32,7 @@ public class AppUserServiceImpl implements IAppUserService {
 
     @Override
     public void delete(Long id) {
-        appUserRepository.delete(appUserRepository.findById(id).get());
-        return;
+        appUserRepository.deleteById(id);
     }
 
     @Override

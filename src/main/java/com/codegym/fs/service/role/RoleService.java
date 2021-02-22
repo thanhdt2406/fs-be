@@ -29,7 +29,7 @@ public class RoleService implements IRoleService{
 
     @Override
     public void delete(Long id) {
-        roleRepository.delete(findById(id).get());
+        roleRepository.deleteById(id);
     }
 
     @Override
