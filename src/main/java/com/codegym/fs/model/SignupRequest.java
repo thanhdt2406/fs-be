@@ -14,5 +14,15 @@ public class SignupRequest {
 
     private String password;
 
+    private String name;
+
+    private String phoneNumber;
+
+    private String address;
+
+    private Long ward;
+
+    private String email;
+
     private Set<String> roles;
 }

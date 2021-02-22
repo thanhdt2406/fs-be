@@ -4,6 +4,7 @@ import com.codegym.fs.configuration.jwt.JwtUtils;
 import com.codegym.fs.model.*;
 import com.codegym.fs.service.appuser.IAppUserService;
 import com.codegym.fs.service.role.IRoleService;
+import com.codegym.fs.service.ward.IWardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -32,6 +33,9 @@ public class AuthController {
 
     @Autowired
     private IRoleService roleService;
+
+    @Autowired
+    private IWardService wardService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -80,7 +84,10 @@ public class AuthController {
 
         AppUser user = new AppUser(
                 signupRequest.getUsername(),
-                passwordEncoder.encode(signupRequest.getPassword())
+                passwordEncoder.encode(signupRequest.getPassword()),
+                signupRequest.getName(),
+                signupRequest.getPhoneNumber(),
+                signupRequest.getAddress()
         );
 
         Set<String> strRoles = signupRequest.getRoles();
@@ -106,6 +113,12 @@ public class AuthController {
             });
         }
 
+        if(signupRequest.getWard() != null && signupRequest.getWard() != -1){
+            user.setWard(wardService.findById(signupRequest.getWard()).get());
+        }
+        if(!signupRequest.getEmail().equals("")){
+            user.setEmail(signupRequest.getEmail());
+        }
         user.setRoles(roles);
         userService.save(user);
 

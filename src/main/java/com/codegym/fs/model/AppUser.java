@@ -46,4 +46,12 @@ public class AppUser {
         this.username = username;
         this.password = password;
     }
+
+    public AppUser(@Size(min = 6, max = 32) @NotNull String username, @NotNull String password, @NotNull String name, @NotNull String phoneNumber, @NotNull String address) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+    }
 }
